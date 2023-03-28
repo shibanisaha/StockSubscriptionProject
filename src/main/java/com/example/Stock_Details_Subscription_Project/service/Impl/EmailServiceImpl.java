@@ -25,17 +25,16 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendSubscriptionEmail(Subscription subscription) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.now();
         String currDate = date.format(formatter);
+        System.out.println(currDate);
 
 
-        LocalDate preDate = subscription.getLastSentDay();
-        if(subscription.getIntervalDays()==1){
-            preDate = preDate.minus(Duration.ofDays(1));
-        }
+        LocalDate preDate = LocalDate.now();
+        preDate = preDate.minusDays(subscription.getIntervalDays());
         String preDateInfo = preDate.format(formatter);
+        System.out.println(preDateInfo);
 
 
         List<StockResponse>  responseList = polygonService.getStockDetails(subscription.getStockSymbol(),
@@ -54,7 +53,7 @@ public class EmailServiceImpl implements EmailService {
             mailMessage.setSubject("Stock Update of ticker: "+ subscription.getStockSymbol() +
                     " from: " +preDateInfo+ " to: "+currDate);
             mailMessage.setText("Dear User, "+"\n"+"Please refer to the stock details for: "+subscription.getStockSymbol()
-                    + " from: "+preDateInfo+" to: " +currDate+ " below: " +"\n"+messageBody.toString());
+                    + " from "+preDateInfo+" to " +currDate+ " below: " +"\n"+messageBody.toString());
             javaMailSender.send(mailMessage);
         }catch (Exception e){
             throw new RuntimeException();

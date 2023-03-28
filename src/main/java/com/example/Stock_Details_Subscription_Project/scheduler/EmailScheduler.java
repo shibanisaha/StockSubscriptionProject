@@ -30,7 +30,6 @@ public class EmailScheduler {
             //send email
             emailService.sendSubscriptionEmail(subscription);
             subscription.setScheduledTime(now.plus(Duration.ofDays(subscription.getIntervalDays())));
-            subscription.setLastSentDay(LocalDate.now());
             subscriptionRepository.save(subscription);
         }
 

@@ -67,7 +67,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
                 .email(email).scheduledTime(utcInstant)
                 .stockSymbol(subscription.getStockSymbol())
                 .intervalDays(interval)
-                .lastSentDay(LocalDate.now())
                 .build();
         subscriptionRepository.save(currSubscription);
 

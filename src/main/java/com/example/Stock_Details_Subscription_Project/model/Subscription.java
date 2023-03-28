@@ -28,6 +28,5 @@ public class Subscription {
     private  String stockSymbol;
     private Instant scheduledTime;
     private int intervalDays;
-    private LocalDate lastSentDay;
 
 }
