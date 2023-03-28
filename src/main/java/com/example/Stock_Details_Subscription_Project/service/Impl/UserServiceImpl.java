@@ -47,12 +47,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(LoginRequestDto loginRequestDto) throws Exception {
+    public Object login(LoginRequestDto loginRequestDto) throws Exception {
       Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(),
                 loginRequestDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "User Logged in successfully";
+        return authentication.getPrincipal();
     }
 
 }

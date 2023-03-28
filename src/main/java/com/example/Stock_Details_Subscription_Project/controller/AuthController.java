@@ -29,7 +29,8 @@ UserService userService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) throws Exception{
+    public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginRequestDto) throws Exception{
+
         return new ResponseEntity<>(userService.login(loginRequestDto), HttpStatus.OK);
     }
 }

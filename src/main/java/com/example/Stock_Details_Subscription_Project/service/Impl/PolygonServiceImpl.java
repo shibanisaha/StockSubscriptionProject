@@ -4,6 +4,7 @@ package com.example.Stock_Details_Subscription_Project.service.Impl;
 import com.example.Stock_Details_Subscription_Project.responseDto.PolygonAggregateResponse;
 import com.example.Stock_Details_Subscription_Project.responseDto.StockGetDetailsResponseDto;
 import com.example.Stock_Details_Subscription_Project.responseDto.StockResponse;
+import com.example.Stock_Details_Subscription_Project.responseDto.SubscriptionResponse;
 import com.example.Stock_Details_Subscription_Project.service.PolygonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,17 @@ public class PolygonServiceImpl implements PolygonService {
             result.add(stockResponse);
 
         }
-
-
         return result;
     }
+
+//    public SubscriptionResponse subscription(String symbol, String date){
+//        String url = String.format("https://api.polygon.io/v1/open-close/" + symbol + "/" + date + "?apiKey=<YOUR_API_KEY>");
+//        SubscriptionResponse result = restTemplate.getForObject(url, SubscriptionResponse.class);
+//        if(result.getStatus().equals("OK")){
+//            return result;
+//        }else {
+//            throw new RuntimeException("Failed to fetch stock data");
+//        }
+
+//    }
 }

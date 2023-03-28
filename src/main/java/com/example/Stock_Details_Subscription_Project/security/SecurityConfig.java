@@ -32,7 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf().disable()
                 .authorizeHttpRequests((auth) ->
-                        auth.requestMatchers(HttpMethod.POST, "/stock/**").authenticated()
+                        auth.requestMatchers(HttpMethod.POST, "/subscriptions").authenticated()
                                 .anyRequest().permitAll()
                                 )
                 .httpBasic(Customizer.withDefaults());

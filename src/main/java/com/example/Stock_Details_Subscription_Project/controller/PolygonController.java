@@ -20,7 +20,7 @@ public class PolygonController {
     PolygonServiceImpl polygonService;
 
     @GetMapping
-    public List<StockResponse> getStockDetails(@RequestParam String ticker, String startDate, String endDate){
+    public List<StockResponse> getStockDetails(@RequestParam String ticker,@RequestParam String startDate,@RequestParam String endDate){
        return polygonService.getStockDetails(ticker, startDate, endDate);
     }
 
