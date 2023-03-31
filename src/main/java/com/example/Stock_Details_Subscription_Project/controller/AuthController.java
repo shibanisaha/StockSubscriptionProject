@@ -3,6 +3,7 @@ package com.example.Stock_Details_Subscription_Project.controller;
 
 import com.example.Stock_Details_Subscription_Project.requestDto.LoginRequestDto;
 import com.example.Stock_Details_Subscription_Project.requestDto.UserRequestDto;
+import com.example.Stock_Details_Subscription_Project.responseDto.JWTResponseDto;
 import com.example.Stock_Details_Subscription_Project.service.Impl.UserServiceImpl;
 import com.example.Stock_Details_Subscription_Project.service.UserService;
 import jakarta.validation.Valid;
@@ -29,8 +30,11 @@ UserService userService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginRequestDto) throws Exception{
+    public ResponseEntity<JWTResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) throws Exception{
+        String token = userService.login(loginRequestDto);
 
-        return new ResponseEntity<>(userService.login(loginRequestDto), HttpStatus.OK);
+        JWTResponseDto jwtResponseDto = new JWTResponseDto();
+        jwtResponseDto.setAccessToken(token);
+        return new ResponseEntity<>(jwtResponseDto, HttpStatus.OK);
     }
 }

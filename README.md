@@ -1,7 +1,7 @@
 Spring boot stock detail subscription project.
 Databased used mongoDB atlas.
  
-User can register and login with email & password. Authentication of User is implemented with spring security DaoAuthentication.
+User can register and login with email & password. Authentication of User is implemented with spring security DaoAuthentication and JWT authentication.
 
 Polygon API is used to get stock data based on stock ticker, start and end date.
 
